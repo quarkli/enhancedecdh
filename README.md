@@ -47,3 +47,7 @@ An example implementation has been written in Dart.
 
 ## Use cases
 For example, a user may post an encrypted message on a public bulletin board or an open blockchain like Bitcoin. Everyone can see the encrypted message, but only the participants who hold the right keys can decrypt it without communication between both parties.
+
+
+## Application implmented Enhanced ECDH
+https://github.com/Cyphereco/digikeyholder
