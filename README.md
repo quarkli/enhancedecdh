@@ -17,7 +17,7 @@ Assume Alice is generating an encrypted message that only Bob can decrypt.
 1. Generate a temporary key R as a nonce
 2. Calculate public key P, where P = A + B + R
 3. Calculate an ECDH shared key S = aB
-4. Calculate an actual shared key S' = R.x * S
+4. Calculate an actual shared key S' = R + S
 5. Symmetrically encrypt the message with S' (AES) to get C
 6. Calculate hash H = Hash(S')
 7. Construct a ciphered message that contains (R, P, H, C)
@@ -26,7 +26,7 @@ Assume Alice is generating an encrypted message that only Bob can decrypt.
 Bob gets the ciphered message (R, P, H, C)
 1. Assume the other participant's public key is A = P - R - B
 2. Calculate the ECDH shared key S = bA 
-3. Assume the actual shared key S' = R.x * S
+3. Assume the actual shared key S' = R + S
 4. Evaluate Hash(S') == H
 5. If Hash(S') == H, we have the correct S' and we can decrypt C with S' to get the plain text message and confirmed the other participant is Alice at the same time. 
 
