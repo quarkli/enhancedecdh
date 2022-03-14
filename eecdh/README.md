@@ -1,1 +1,1 @@
-A simple command-line application.
+A simple command-line example of enhanced ECDH encryption/decryption.
