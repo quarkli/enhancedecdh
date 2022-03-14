@@ -11,6 +11,8 @@ We propose an encryption/decryption method that the shared key is randomly gener
 1. Alice's key pair is A = aG, (Upper case A is public key; Lower case a is private key; G is the elliptic base point.)
 2. Bob's key pair is B = bG
 3. Alice's and Bob's shared key S = aB = bA = abG
+4. Alice encrypt M with S to get C = Enc(M, S), then send C to Bob.
+5. Bob decrypt C with S to get M = Dec(C, S)
 
 ### Enhanced ECDH encryption:
 Assume Alice is generating an encrypted message that only Bob can decrypt.
@@ -18,7 +20,7 @@ Assume Alice is generating an encrypted message that only Bob can decrypt.
 2. Calculate public key P, where P = A + B + R
 3. Calculate an ECDH shared key S = aB
 4. Calculate an actual shared key S' = R + S
-5. Symmetrically encrypt the message with S' (AES) to get C
+5. Symmetrically encrypt the message with S' to get C = Enc(M, S')
 6. Calculate hash H = Hash(S')
 7. Construct a ciphered message that contains (R, P, H, C)
 
@@ -28,7 +30,7 @@ Bob gets the ciphered message (R, P, H, C)
 2. Calculate the ECDH shared key S = bA 
 3. Assume the actual shared key S' = R + S
 4. Evaluate Hash(S') == H
-5. If Hash(S') == H, we have the correct S' and we can decrypt C with S' to get the plain text message and confirmed the other participant is Alice at the same time. 
+5. If Hash(S') == H, we have the correct S' and we can decrypt C with S' to get M = Dec(C, S') and confirmed the other participant is Alice at the same time. 
 
 The ciphered message (R, P, H, C) can be published/transmitted publicly. No one can decipher C without knowing the correct S'. 
 
